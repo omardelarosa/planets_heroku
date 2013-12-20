@@ -4,7 +4,8 @@ require 'sinatra/activerecord/rake'
 require 'active_support/all'
 # require 'sinatra/reloader'
 
-set :environment, :development
+# set :environment, :development
+set :environment, :production
 
 # models
 require_relative 'models/astronaut'
