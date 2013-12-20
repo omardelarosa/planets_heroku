@@ -1,0 +1,65 @@
+<ul class="astronauts">
+
+  <% @astronauts.each do |astronaut| %>
+    <li><%= astronaut.name %>
+        <h2>Planets</h2>
+        <ul class="planets">
+          <% astronaut.planets.each do |planet| %>
+            <li class="planet"><%= planet.name %></li>
+          <% end %>
+        </ul>
+        <h2>Moons</h2>
+        <ul class="moons">
+          <% astronaut.moons.each do |moon| %>
+            <li class="moon"><%= moon.name %></li>
+          <% end %>
+        </ul>
+
+    </li>
+  <% end %>
+</ul>
+
+<form action="/create" method="POST">
+  <h3>Add an Astronaut, Planet or Moon to our DB</h3>
+  <select name="model">
+    <option value="Planet">Planet</option>
+    <option value="Moon">Moon</option>
+    <option value="Astronaut">Astronaut</option>
+  </select>
+  <input type="text" name="name" placeholder="name" />
+  <input type="submit" value="create" />
+</form>
+
+<form action="/voyage/create" method="POST" class="trip_new">
+ <h3>Create a Voyage:</h3>
+  <!-- Meghann's Form -->
+    <p>Astronaut Name:<br><br />
+      <!-- <input type="text" name="name" /> -->
+       <select name="astronaut_id">
+        <!-- Eric's Loop -->
+        <% @astronauts.each do |astronaut| %>
+        <!-- Brittany's Option -->
+        <option value="<%= astronaut.id%>"><%= astronaut.name %></option>
+        <% end %>
+      </select>
+  <br />
+    <p>Planet Name:<br><br />
+      <!-- <input type="text" name="name" /> -->
+      <select name="planet_id">
+        <!-- Eric's Loop -->
+        <% @planets.each do |planet| %>
+        <!-- Brittany's Option -->
+        <option value="<%= planet.id%>"><%= planet.name %></option>
+        <% end %>
+      </select>
+      <p>Moon Name:<br><br />
+      <!-- <input type="text" name="name" /><br><br /> -->
+       <select name="moon_id">
+        <!-- Eric's Loop -->
+        <% @moons.each do |moon| %>
+        <!-- Brittany's Option -->
+        <option value="<%= moon.id%>"><%= moon.name %></option>
+        <% end %>
+      </select>
+      <button class="button">GO!</button>
+  </form>
